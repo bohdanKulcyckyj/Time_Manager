@@ -1,0 +1,243 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100vh;
+  background: #031321;
+  font-family: consolas;
+}
+
+.header h1 {
+  font-size: 60px;
+  color: #2196f3;
+  color: white;
+  margin: 30px 0 70px;
+}
+
+.header button {
+  letter-spacing: 2px;
+}
+
+.header #to-main {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  color: #2196f3;
+  background: transparent;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.header #to-main i {
+  margin-right: 4px;
+}
+
+.header #to-main:hover i {
+  font-size: 28px;
+  opacity: 0.7;
+}
+
+.header #stats-button {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  color: #2196f3;
+  background: transparent;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.header #stats-button i {
+  margin-right: 4px;
+}
+
+.header #stats-button:hover i {
+  font-size: 28px;
+  opacity: 0.7;
+}
+
+.header #remove-all-data {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  color: #2196f3;
+  background: transparent;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.header #remove-all-data i {
+  margin-right: 4px;
+}
+
+.header #remove-all-data:hover i {
+  font-size: 28px;
+  opacity: 0.7;
+}
+
+#display {
+  font-size: 60px;
+  text-align: center;
+  color: #2196f3;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.sleeptime-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.days-container {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.days-container .day-stats {
+  color: white;
+  background: #031321;
+  border: 1px solid white;
+  font-size: 18px;
+  display: inline;
+  padding: 8px 4px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.days-container .day-stats:hover {
+  color: #031321;
+  border-color: #031321;
+  background: white;
+}
+
+#activity-container .activity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #2196f3;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+#activity-container .activity i {
+  font-size: 24px;
+  padding: 4px;
+}
+
+#activity-container .activity:hover {
+  border-bottom: 2.5px solid #2196f3;
+}
+
+#add-activity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: baseline;
+      -ms-flex-pack: baseline;
+          justify-content: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+}
+
+#add-activity #input-activity {
+  height: 50px;
+  padding: 6px;
+  color: #031321;
+  font-size: 28px;
+  border-radius: 6px;
+}
+
+#add-activity #add-button {
+  color: #2196f3;
+  font-size: 54px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+#add-activity #add-button:hover {
+  font-size: 52px;
+  opacity: 0.7;
+}
+
+#current-activity {
+  color: #2196f3;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stat-table {
+  min-width: 400px;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.stat-table tbody {
+  width: 100%;
+}
+
+.stat-table tbody tr {
+  width: 33.33333%;
+}
+
+.stat-table tbody tr th {
+  color: #2196f3;
+  font-size: 26px;
+}
+
+.stat-table tbody tr td {
+  color: white;
+  font-size: 20px;
+}
+
+.stat-table tbody tr td,
+.stat-table tbody tr th {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #2196f3;
+}
+
+.hide {
+  display: none !important;
+}
+/*# sourceMappingURL=style.css.map */
