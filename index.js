@@ -185,6 +185,7 @@ function startTracking(element) {
                         </button>
                           </div>`;
     container.innerHTML += activityEl;
+    container.style.transform = "translateY(50%)";
 }
 
 function onloadData() {
