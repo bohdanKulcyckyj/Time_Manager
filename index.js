@@ -106,19 +106,37 @@ function reset() {
 
 function saveIt() {
     for(let i = 0; i < activities.length; i++) {
+         for(let j = 0; j < trackActivities.length; j++) {
+            if(activities[i].name === stoppingActivity) {
+                if(activities[i].name === trackActivities[j].name) {
+                    trackActivities[j] = {name: stoppingActivity, time : {date : new Date().getDate(), month : new Date().getMonth(), year : "2021"}, h: trackActivities[j].h + activities[i].time.h, m :  trackActivities[j].m + activities[i].time.m, s: trackActivities[j].s + activities[i].time.s};
+                    localStorage.setItem("track_list", JSON.stringify(trackActivities));
+                    window.clearInterval(interval);
+                    seconds = 0;
+                    minutes = 0;
+                    hours = 0;
+                    removeAll();
+                    onloadData();
+                    toMainBtn.classList.add("hide");
+                    removeAllDataButton.classList.remove("hide");
+                    return;
+                }
+            }
+        } 
         if(activities[i].name === stoppingActivity) {
             trackActivities.push({name: stoppingActivity, time : {date : new Date().getDate(), month : new Date().getMonth(), year : "2021"}, h: activities[i].time.h, m :  activities[i].time.m, s: activities[i].time.s});
             localStorage.setItem("track_list", JSON.stringify(trackActivities));
+            window.clearInterval(interval);
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            removeAll();
+            onloadData();
+            toMainBtn.classList.add("hide");
+            removeAllDataButton.classList.remove("hide");
+            return;
         }
     }
-    window.clearInterval(interval);
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    removeAll();
-    onloadData();
-    toMainBtn.classList.add("hide");
-    removeAllDataButton.classList.remove("hide");
 }
 
 function removeAll() {
@@ -129,13 +147,21 @@ function removeAll() {
 
 function addActivity() {
     if (input.value === "") {
-        alert("Please add Activity");
+        alert("Přidejte prosím aktivitu");
+        return alert("Přidejte prosím aktivitu");
     } else {
-    activities.push({name : input.value, time : {h : 0, m : 0, s : 0}});
-    localStorage.setItem("activity_list", JSON.stringify(activities));
-    let currentActivity = `<div class="activity" onclick="startTracking(this)" id="${input.value}"><span>${input.value}</span><i class="fas fa-trash" onclick="event.stopPropagation(); deleteActivity(this)"></i></div>`;
-    activityContainer.innerHTML += currentActivity;
-    input.value = "";
+        for(let i = 0; i < activities.length; i++) {
+            if(activities[i].name === input.value.toLowerCase()) {
+                input.value = "";
+                return alert("Aktivita jíž existuje");
+            }
+        }
+        activities.push({name : input.value.toLowerCase(), time : {h : 0, m : 0, s : 0}});
+        localStorage.setItem("activity_list", JSON.stringify(activities));
+        let currentActivity = `<div class="activity" onclick="startTracking(this)" id="${input.value.toLowerCase()}"><span>${input.value}</span><i class="fas fa-trash" onclick="event.stopPropagation(); deleteActivity(this)"></i></div>`;
+        activityContainer.innerHTML += currentActivity;
+        input.value = "";
+        return;
     }
 }
 
@@ -162,7 +188,7 @@ function startTracking(element) {
                           </div>
 
                           <div class="buttons">
-                            <button class="btns default" id="startStop" onclick="startStop()">
+                            <button class="btns" id="startStop" onclick="startStop()">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -181,11 +207,10 @@ function startTracking(element) {
                             <span></span>
                             <span></span>
                             <span></span>
-                            Save
+                            Uložit
                         </button>
                           </div>`;
     container.innerHTML += activityEl;
-    container.style.transform = "translateY(50%)";
 }
 
 function onloadData() {
@@ -203,17 +228,14 @@ function showStats() {
     <th class="head-unit">Activity</th>
     <th class="head-unit">Date</th>
     <th class="head-unit">Time</th>
+    <th class="head-unit"></th>
     </tr>`;
     let statRow;
     removeAll();
     dayStatAnchor();
     //setSleepingTime();
     if(trackActivities.length < 1) {
-        headRow = `<tr class="head-row hide">
-        <th class="head-unit">Activity</th>
-        <th class="head-unit">Date</th>
-        <th class="head-unit">Time</th>
-        </tr>`;
+        headRow = `<h1>Nemate žádné předchozí záznamy o aktivitě</h1`;
     }
     container.appendChild(table);
     table.classList.add("stat-table");
@@ -224,13 +246,19 @@ function showStats() {
                     <td class="stat-unit">${curr.name}</td>
                     <td class="stat-unit">${curr.time.date < 10 ? "0" + curr.time.date : curr.time.date}.${(curr.time.month + 1) < 10 ? "0" + (curr.time.month + 1) : (curr.time.month + 1)}.${curr.time.year}</td>
                     <td class="stat-unit">${curr.h < 10 ? "0" + curr.h : curr.h}:${curr.m < 10 ? "0" + curr.m : curr.m}:${curr.s < 10 ? "0" + curr.s : curr.s}</td>
-                    <td class="stat-unit close hide" id="${curr.name}"><i class="fas fa-times" id="${curr.name}-btn"></i></td>
+                    <td class="stat-unit close" id="${i}"><i class="fas fa-times" id="${curr.name}-btn" onclick="removeCurrentRecord(${i})"></i></td>
                </tr>`;
     table.innerHTML += statRow;
     }
     toMainBtn.classList.remove("hide");
     removeAllDataButton.classList.add("hide");
     statsButton.classList.add("hide");
+}
+
+function removeCurrentRecord(index) {
+    trackActivities.splice(index, 1);
+    localStorage.setItem("track_list", JSON.stringify(trackActivities));
+    showStats();
 }
 
 function removeAllData() {

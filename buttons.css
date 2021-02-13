@@ -96,7 +96,7 @@
   color: #255784;
   background: #2196f3;
   box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-  transition-delay: 2s;
+  /*transition-delay: 2s;*/
 }
 
 .default {
@@ -104,11 +104,11 @@
   background: #2196f3 !important;
   box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3 !important;
 }
-
+/* 
 .btns:hover span:nth-child(1) {
   left: 100%;
   transition: 1s;
-  animation: animate1 1s linear infinite; /*přidáno*/
+  animation: animate1 1s linear infinite;
 }
 
 .btns:hover span:nth-child(2) {
@@ -134,3 +134,4 @@
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }
+ */
